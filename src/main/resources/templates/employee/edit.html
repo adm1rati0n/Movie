@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Brawl movies</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<header th:insert="/blocks/headerAdmin"/>
+<style>
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<form method="post" class="center" th:object="${employee}">
+    <h1 class="h2 mb-3 fw-normal">Изменить</h1>
+    <div class="col-md-12">
+        <input type="text" class="form-control" th:value="*{surname}" th:field="*{surname}" name="surname" placeholder="Фамилия">
+        <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <input type="text" class="form-control" th:field="*{name}" th:value="*{name}" name="name" placeholder="Имя">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    </div>
+    </br>
+    <div class="col-md-12">
+        <input type="text" class="form-control" th:field="*{middlename}" th:value="*{middlename}" name="middlename" placeholder="Отчество">
+        <div style="color: red" th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}"></div>
+    </div>
+    </br>
+    <div class="col-md-12" th:object="${user}">
+        <div class="col-md-12">
+            <input type="text" class="form-control" name="username" th:field="*{username}" th:value="*{username}" placeholder="Логин">
+            <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+        <br/>
+        <div class="col-md-12">
+            <input type="text" class="form-control" name="password" th:field="*{password}" th:value="*{password}" placeholder="Пароль">
+            <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+    </div>
+    <br/>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Сохранить изменения</button>
+</form>
+</body>
+</html>

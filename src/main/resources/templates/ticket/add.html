@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Brawl movies</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<header th:insert="/blocks/headerCustomer"/>
+<style>
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<form method="post" class="center" th:object="${ticket}">
+    <h1 class="h2 mb-3 fw-normal">Забронировать билет</h1>
+    <div class="col-md-12">
+        <input th:field="*{seat}" type="text" class="form-control" name="seat" placeholder="Место">
+        <div style="color: red" th:if="${#fields.hasErrors('seat')}" th:errors="*{seat}"></div>
+    </div>
+    <br/>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Забронировать</button>
+</form>
+</body>
+</html>

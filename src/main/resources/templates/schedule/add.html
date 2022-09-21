@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Brawl movies</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<header th:insert="/blocks/headerEmployee"/>
+<style>
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<form th:action="${'/schedule/add'}" method="post" class="center" th:object="${schedule}">
+    <h1 class="h2 mb-3 fw-normal">Добавить расписание</h1>
+    <div class="col-md-12">
+        <input th:field="*{price}" type="number" class="form-control" name="price" placeholder="Цена">
+        <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <input th:field="*{date}" type="datetime-local" class="form-control" name="date" placeholder="Дата">
+        <div style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <select th:field="*{film}"class="form-control">
+            <option th:each="film: ${films}" th:value="${film.getId()}" th:text="${film.getName()}"></option>
+        </select>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <select th:field="*{hall}"class="form-control">
+            <option th:each="hall: ${halls}" th:value="${hall.getId()}" th:text="${hall.getName()}"></option>
+        </select>
+    </div>
+    <br/>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Отправить</button>
+</form>
+</body>
+</html>

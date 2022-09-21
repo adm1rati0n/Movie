@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Brawl movies</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<div th:if="${param.error}" style="color: red">
+    Неверный логин или пароль. Повторите попытку
+</div>
+<div th:if="${param.logout}">
+    Произведен выход из аккаунта
+</div>
+<style>
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<form th:action="@{/login}" method="post" class="center">
+    <h1 class="h2 mb-3 fw-normal" th:align="center">Авторизация</h1>
+    <div class="col-md-12">
+        <input type="text" class="form-control" name="username" placeholder="Логин">
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <input type="text" class="form-control" name="password" placeholder="Пароль">
+    </div>
+    <br/>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+    <br/>
+    Еще нет аккаунта?<a href="/registration"> Зарегистрироваться</a>
+</form>
+</body>
+</html>

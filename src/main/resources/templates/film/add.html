@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Brawl movies</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<header th:insert="/blocks/headerEmployee"/>
+<style>
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<form th:action="${'/film/add'}" method="post" class="center" th:object="${film}">
+    <h1 class="h2 mb-3 fw-normal">Добавить фильм</h1>
+    <div class="col-md-12">
+        <input th:field="*{name}" type="text" class="form-control" name="name" placeholder="Название">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <select th:field="*{genre}"class="form-control">
+            <option th:each="genre: ${genres}" th:value="${genre.getId()}" th:text="${genre.getName()}"></option>
+        </select>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <select th:field="*{actor}"class="form-control">
+            <option th:each="actor: ${actors}" th:value="${actor.getId()}" th:text="${actor.getSurname() + ' ' + actor.getName() + ' ' + actor.getMiddlename()}"></option>
+        </select>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <select th:field="*{producer}"class="form-control">
+            <option th:each="producer: ${producers}" th:value="${producer.getId()}" th:text="${producer.getSurname() + ' ' + producer.getName() + ' ' + producer.getMiddlename()}"></option>
+        </select>
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <select th:field="*{studio}"class="form-control">
+            <option th:each="studio: ${studios}" th:value="${studio.getId()}" th:text="${studio.getName()}"></option>
+        </select>
+    </div>
+    <br/>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Отправить</button>
+</form>
+</body>
+</html>
